@@ -35,11 +35,13 @@ public class Turma {
 	public Curso getCurso() {
 		return curso;
 	}
-	public LocalDate getData_inicio() {
-		return data_inicio;
+	public String getData_inicio() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return data_inicio.format(formatter);
 	}
-	public LocalDate getData_final() {
-		return data_final;
+	public String getData_final() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return data_final.format(formatter);
 	}
 	
 	private static int idProximo=0;

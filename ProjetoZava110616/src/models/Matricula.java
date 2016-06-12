@@ -30,8 +30,9 @@ public class Matricula {
 	public Aluno getAluno() {
 		return aluno;
 	}
-	public LocalDate getData_matricula() {
-		return data_matricula;
+	public String getData_matricula() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return data_matricula.format(formatter);
 	}
 	
 	private static int idProximo=0;

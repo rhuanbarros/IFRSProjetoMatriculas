@@ -37,6 +37,8 @@ public class Dao {
 	}
 
 	static {
+		System.out.println("FOI O STATICO");
+		
 		Aluno aluno1 = new Aluno(1234, "1234", "Aluno1", "aluno1@if","5144556611", "26/08/1986" );
 		Aluno aluno2 = new Aluno(4321, "4321", "Aluno2", "aluno2@if","5177556611", "02/05/1992" );
 		alunos.add(aluno1);
@@ -54,6 +56,7 @@ public class Dao {
 		
 		Turma turma1 = new Turma(instrutor1, curso1, "20/06/2016", "25/06/2016" );
 		Turma turma2 = new Turma(instrutor2, curso2, "20/06/2016", "25/06/2016" );
+		
 		turmas.add(turma1);
 		turmas.add(turma2);
 		

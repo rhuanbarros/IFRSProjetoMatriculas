@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import models.Matricula;
+import models.Curso;
+import models.Instrutor;
 
-public class MatriculasComando extends Comando {
+public class CursosComando extends Comando {
 
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
@@ -19,11 +20,12 @@ public class MatriculasComando extends Comando {
 		
 		verificaLoginInstrutor(request, response);
 		
-		List<Matricula> matriculas = Dao.getMatriculas();
-		request.setAttribute("matriculas", matriculas);
+		List<Curso> cursos = Dao.getCursos();
+		request.setAttribute("cursos", cursos);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/instrutores/matriculas.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/instrutores/cursos.jsp");
         rd.forward(request, response);
+
 	}
 
 }

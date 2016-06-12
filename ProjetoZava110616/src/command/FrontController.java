@@ -36,19 +36,26 @@ public class FrontController extends HttpServlet {
         //instrutores
         controle.put("loginInstrutores", "command.LoginInstrutoresComando");
         controle.put("matriculas", "command.MatriculasComando");
+        controle.put("instrutores", "command.InstrutoresComando");
+        controle.put("alunos", "command.AlunosComando");
+        controle.put("cursos", "command.CursosComando");
+        controle.put("turmas", "command.TurmasComando");
         
-        //logout para os dois
+        //para os dois
         controle.put("logout", "command.LogoutComando");
+        controle.put("404error", "command._404ErrorComando");
         
     }
 
-    //@see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String servlet = request.getParameter("servlet");
 
         Comando cmd;
         try {
-            cmd = (Comando) Class.forName((String) controle.get(servlet)).newInstance();
+        	String classe = controle.get(servlet);
+			if (classe == null ) classe = controle.get("404error");
+        		
+            cmd = (Comando) Class.forName((String) classe).newInstance();
             cmd.executar(request, response);
         } catch (Exception e) {
         	log.log(Level.SEVERE, null, e);
@@ -57,7 +64,6 @@ public class FrontController extends HttpServlet {
 		
 	}
 
-	//@see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

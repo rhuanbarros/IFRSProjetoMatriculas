@@ -29,6 +29,23 @@ public class Aluno {
 		this.id_aluno = getIdProximo();
 	}
 
+	public int getId_aluno() {
+		return id_aluno;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getFone() {
+		return fone;
+	}
+
+	public String getData_nascimento() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return data_nascimento.format(formatter);
+	}
+
 	public int getMatricula() {
 		return matricula;
 	}

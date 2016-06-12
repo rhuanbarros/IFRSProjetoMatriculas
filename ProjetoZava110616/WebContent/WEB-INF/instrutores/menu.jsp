@@ -3,7 +3,7 @@
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="Principal">Clínica Médica</a>
+			<a class="navbar-brand" href="FrontController?servlet=matriculas">Campus Digital</a>
 		</div>
 		<%
 			Instrutor instrutor = (Instrutor) session.getAttribute("usuario.logado");
