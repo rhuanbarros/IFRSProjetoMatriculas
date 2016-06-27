@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.Aluno;
-import models.Instrutor;
+import model.Aluno;
+import model.Instrutor;
 
 public abstract class Comando {
 	
 	public abstract void executar(HttpServletRequest request, HttpServletResponse response) 
-			throws ClassNotFoundException, IOException, ServletException;
+			throws ClassNotFoundException, IOException, ServletException, Exception;
 	
 	public void verificaLoginEstudante(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -31,7 +31,7 @@ public abstract class Comando {
         } else {    //usuario nao logado
             System.out.println("ACESSO RESTRITO - Faça login.");
             
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/index_alunos.jsp");
             rd.forward(request, response);
             return;
         }
@@ -52,7 +52,7 @@ public abstract class Comando {
         } else {    //usuario nao logado
             System.out.println("ACESSO RESTRITO - Faça login.");
             
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/index_instrutores.jsp");
             rd.forward(request, response);
             return;
         }

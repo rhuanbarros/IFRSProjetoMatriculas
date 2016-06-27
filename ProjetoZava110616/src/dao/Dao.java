@@ -3,11 +3,11 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Aluno;
-import models.Curso;
-import models.Instrutor;
-import models.Matricula;
-import models.Turma;
+import model.Aluno;
+import model.Curso;
+import model.Instrutor;
+import model.Matricula;
+import model.Turma;
 
 public class Dao {
 	static private List<Curso> cursos = new ArrayList<>();
@@ -64,6 +64,18 @@ public class Dao {
 		Matricula matricula2 = new Matricula(turma2, aluno2, "17/06/2016");
 		matriculas.add(matricula1);
 		matriculas.add(matricula2);
+	}
+
+	public static void addCurso(Curso curso) {
+		cursos.add(curso);
+	}
+
+	public static void addAluno(Aluno aluno) {
+		alunos.add(aluno);
+	}
+
+	public static void addInstrutor(Instrutor instrutor) {
+		instrutores.add(instrutor);
 	}
 	
 }

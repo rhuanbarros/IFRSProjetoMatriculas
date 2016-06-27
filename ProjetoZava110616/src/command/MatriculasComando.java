@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import models.Matricula;
+import dao.MatriculaDao;
+import model.Matricula;
 
 public class MatriculasComando extends Comando {
 
@@ -19,7 +20,9 @@ public class MatriculasComando extends Comando {
 		
 		verificaLoginInstrutor(request, response);
 		
-		List<Matricula> matriculas = Dao.getMatriculas();
+		//List<Matricula> matriculas = Dao.getMatriculas();
+		List<Matricula> matriculas = new MatriculaDao().findAll();
+		
 		request.setAttribute("matriculas", matriculas);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/instrutores/matriculas.jsp");

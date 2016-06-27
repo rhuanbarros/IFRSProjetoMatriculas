@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import models.Instrutor;
-import models.Matricula;
+import dao.InstrutorDao;
+import model.Instrutor;
+import model.Matricula;
 
 public class InstrutoresComando extends Comando {
 
@@ -20,7 +21,9 @@ public class InstrutoresComando extends Comando {
 		
 		verificaLoginInstrutor(request, response);
 		
-		List<Instrutor> instrutores = Dao.getInstrutores();
+		//List<Instrutor> instrutores = Dao.getInstrutores();
+		List<Instrutor> instrutores = new InstrutorDao().findAll();
+		
 		request.setAttribute("instrutores", instrutores);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/instrutores/instrutores.jsp");

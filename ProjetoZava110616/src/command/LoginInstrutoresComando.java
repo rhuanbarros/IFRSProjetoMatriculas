@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Dao;
-import models.Instrutor;
+import dao.InstrutorDao;
+import model.Instrutor;
 
 public class LoginInstrutoresComando extends Comando {
 
@@ -22,7 +23,9 @@ public class LoginInstrutoresComando extends Comando {
 
         HttpSession session = request.getSession();
         
-        List<Instrutor> instrutores = Dao.getInstrutores();
+        //List<Instrutor> instrutores = Dao.getInstrutores();
+        List<Instrutor> instrutores = new InstrutorDao().findAll();
+        
         Integer matricula = Integer.parseInt( matricula_s );
         
         for( Instrutor i: instrutores ) {
@@ -31,8 +34,8 @@ public class LoginInstrutoresComando extends Comando {
                 session.setAttribute("usuario.tipo", "instrutor");
                 System.out.printf("Usuario %s logado", i.getNome() );
                 
-                MatriculasComando matriculasComando = new MatriculasComando();
-                matriculasComando.executar(request, response);
+                new MatriculasComando().executar(request, response);
+                //new AlunosComando().executar(request, response);
                 return;
             }
         }

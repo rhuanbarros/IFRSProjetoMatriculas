@@ -8,9 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Dao;
-import models.Aluno;
-import models.Instrutor;
+import dao.AlunoDao;
+import model.Aluno;
 
 public class AlunosComando extends Comando {
 
@@ -20,7 +19,9 @@ public class AlunosComando extends Comando {
 		
 		verificaLoginInstrutor(request, response);
 		
-		List<Aluno> alunos = Dao.getAlunos();
+		//List<Aluno> alunos = Dao.getAlunos();
+		List<Aluno> alunos = new AlunoDao().findAll();
+		
 		request.setAttribute("alunos", alunos);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/instrutores/alunos.jsp");

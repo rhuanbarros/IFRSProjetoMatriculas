@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
-<%@page import="models.Matricula"%>
+<%@page import="model.Matricula"%>
+<%@page import="model.Instrutor"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

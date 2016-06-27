@@ -9,23 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AlunoDao;
 import dao.Dao;
-import models.*;
+import model.*;
 
 public class LoginAlunoComando extends Comando {
 
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, IOException, ServletException {
+			throws Exception {
 		String matricula_s = request.getParameter("matricula");
         String senha = request.getParameter("senha");
 
         HttpSession session = request.getSession();
         
-        List<Aluno> alunos = Dao.getAlunos();
+        List<Aluno> alunos = new AlunoDao().findAll();
         Integer matricula = Integer.parseInt( matricula_s );
         
         for( Aluno a: alunos ) {
+        	
             if( a.getMatricula() == matricula && a.getSenha().equals(senha) ) {
                 session.setAttribute("usuario.logado", a);
                 session.setAttribute("usuario.tipo", "aluno");
@@ -40,7 +42,7 @@ public class LoginAlunoComando extends Comando {
         //fazer login para professores tbm
         
         System.out.println("login e/ou senhas incorreto");
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp?msg=loginerror");
+        RequestDispatcher rd = request.getRequestDispatcher("/index_alunos.jsp?msg=loginerror");
         rd.forward(request, response);
         return;
 
